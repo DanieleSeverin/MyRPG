@@ -1,0 +1,13 @@
+DungeonFlooor: max 9 stanze per floor
+Ogni Floor ha una difficoltà incrementale, ogni volta che si crea un floor la difficoltà aumenta di 1.
+
+token = max stanze
+ogni volta che crei una stanza trova un numero random di porte (da 1 a 4)
+
+sottrai il numero di porte dal numero di token
+
+se il numero di porte generato casualmente è maggiore del token allora crea un numero di porte pari al token
+
+se token=0 allora le altre stanze avranno 0 porte
+
+-> magari in base a questo attiva una funzione che crea nelle ultime stanze un boss con scala per piano successivo.
