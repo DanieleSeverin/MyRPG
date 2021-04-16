@@ -1,29 +1,27 @@
 package view;
 
-import controller.Dungeon;
 import controller.Game;
-import model.PC;
-import model.Room;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Startgame extends JPanel {
+public class StartGame extends JPanel {
 
     private Game game;
     ImageIcon startGame = new ImageIcon("src/resources/StartGame.png");
     ImageIcon gameOver = new ImageIcon("src/resources/GameOver.png");
+    ImageIcon youWin = new ImageIcon("src/resources/YouWin.png");
     Image image;
 
-    public Startgame(Game game) {
+    public StartGame(Game game) {
 
         this.game = game;
 
         image = startGame.getImage();
 
-        addKeyListener(new Startgame.TAdapter());
+        addKeyListener(new StartGame.TAdapter());
         setBackground(Color.black);
         setFocusable(true);
     }
@@ -31,6 +29,8 @@ public class Startgame extends JPanel {
     public void switchToGameOver(){
         image = gameOver.getImage();
     }
+
+    public void switchToYouWin() { image = youWin.getImage(); }
 
     @Override
     public void paintComponent(Graphics g) {

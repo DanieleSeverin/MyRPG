@@ -1,7 +1,7 @@
 package controller;
 
 import model.*;
-import view.Startgame;
+import view.StartGame;
 import view.View;
 
 import javax.swing.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class Game extends JFrame implements ActionListener {
 
     private View view;
-    private Startgame startgame;
+    private StartGame startgame;
     private Dungeon dungeon;
     private PC pc;
     private Room currentRoom;
@@ -35,7 +35,7 @@ public class Game extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setResizable(true);
 
-        startgame = new Startgame(this);
+        startgame = new StartGame(this);
         add(startgame);
 
         setVisible(true);
@@ -143,6 +143,7 @@ public class Game extends JFrame implements ActionListener {
         repaint();
         updateSpells();
         checkPcDeath();
+        checkWinCondition();
     }
 
     private void initElements(){
@@ -338,11 +339,24 @@ public class Game extends JFrame implements ActionListener {
     private void checkPcDeath(){
         if(pc.getHp() <=0){
             pc.setHp(1);
-            startgame = new Startgame(this);
+            startgame = new StartGame(this);
             startgame.switchToGameOver();
             add(startgame);
             view.setVisible(false);
             setVisible(true);
+        }
+    }
+
+    private void checkWinCondition(){
+        for (Enemy enemy : enemies) {
+            if(enemy.getClass() == Boss.class && enemy.getHp() <= 0){
+                enemy.setHp(1);
+                startgame = new StartGame(this);
+                startgame.switchToYouWin();
+                add(startgame);
+                view.setVisible(false);
+                setVisible(true);
+            }
         }
     }
 
